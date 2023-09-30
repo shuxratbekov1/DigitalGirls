@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/plugins/data-tables/css/datatables.min.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <div class="page-header">
+                                <div class="page-block">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div class="page-header-title">
+                                                <h5 class="m-b-10">User Answer List Dashboard</h5>
+                                            </div>
+                                            <ul class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="{% url 'userAnswerCoursePage' %}"><i class="fas fa-chevron-circle-left"></i></a></li>
+                                                <li class="breadcrumb-item"><a href="#">User Answer List</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card user-profile-list">
+                                        <div class="card-body">
+                                            <div class="dt-responsive table-responsive">
+                                                <table id="key-act-button" class="display table nowrap table-striped table-hover" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>№</th>
+                                                            <th>Name</th>
+                                                            <th>Phone Number</th>
+                                                            <th>Percentage</th>
+                                                            <th>Total</th>
+                                                            <th>Correct</th>
+                                                            <th>Wrong</th>
+                                                            <th>View</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for l in quiz %}
+                                                        <tr>
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>{{ l.candidate.name }}</td>
+                                                            <td>{{ l.candidate.phone_number }}</td>
+                                                            <td>{{ l.percentage }}</td>
+                                                            <td>{{ l.total }}</td>
+                                                            <td>{{ l.correct }}</td>
+                                                            <td>{{ l.wrong }}</td>
+                                                            <td>
+                                                                <div class="overlay-edit">
+                                                                    <a href="{% url 'userAnswerQuestionViewPage' l.id %}" class="btn btn-icon btn-success"><i class="feather icon-eye"></i></a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block script %}
+<script src="{% static 'assets/plugins/data-tables/js/datatables.min.js' %}"></script>
+<script src="{% static 'assets/js/pages/tbl-datatable-custom.js' %}"></script>
+{% endblock %}

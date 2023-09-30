@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="page-header-title">
+                                        <h5 class="m-b-10"><b>{{ candidate.name}}</b> <span>{{ candidate.phone_number}}</span></h5>
+                                    </div>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{% url 'userAnswerListPage' pk %}"><i class="fas fa-chevron-circle-left"></i></a></li>
+                                        <li class="breadcrumb-item"><a href="#">User Answer View</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <div class="row">
+                                <div class="col-md-6 col-xl-3">
+                                    <div class="card user-card" style="background: linear-gradient(#e66465, #9198e5);">
+                                        <div class="card-block">
+                                            <h5 style="color: #FFFFFF">Percentage <i class="fas fa-percentage"></i></h5>
+                                            <p style="color: #FFFFFF">{{ quiz_result.percentage }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3">
+                                    <div class="card user-card">
+                                        <div class="card-block">
+                                            <h5>Total <i class="fas fa-infinity"></i></h5>
+                                            <p>{{ quiz_result.total }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3">
+                                    <div class="card user-card">
+                                        <div class="card-block">
+                                            <h5>Correct <i class="fas fa-check-circle"></i></h5>
+                                            <p>{{ quiz_result.correct }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3">
+                                    <div class="card user-card">
+                                        <div class="card-block">
+                                            <h5>Wrong <i class="fas fa-times-circle"></i></h5>
+                                            <p>{{ quiz_result.wrong }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Answers</h5>
+                                        </div>
+                                        <div class="card-block">
+                                            {% for i in questions %}
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h5>{{ i.question.query|safe }}</h5>
+                                                    </div>
+                                                    <div class="col-sm-5 border-start">
+                                                        <p class="mb-1">{{ i.answer|safe }}</p>
+                                                    </div>
+                                                    {% if i.question.free_option %}
+                                                        <div class="col-sm-1 border-start text-center">
+                                                            <p class="mb-1 text-primary"><i class="fas fa-spinner"></i></p>
+                                                        </div>
+                                                    {% else %}
+                                                        {% if i.is_correct %}
+                                                        <div class="col-sm-1 border-start text-center">
+                                                            <p class="mb-1 text-primary"><i class="fas fa-check-circle"></i></p>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="col-sm-1 border-start text-center">
+                                                            <p class="mb-1 text-danger"><i class="fas fa-times-circle"></i></p>
+                                                        </div>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock %}
+

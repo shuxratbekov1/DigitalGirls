@@ -1,0 +1,188 @@
+{#20.01.2023 start#}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Digital Girls V1.0</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Digital Girls v1.0" />
+
+    <link rel="icon" href="{% static 'assets/images/logo_girls.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/perfect-scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/costum.css' %}">
+    {% block css %}
+    {% endblock %}
+</head>
+
+<body>
+    <nav class="pcoded-navbar">
+        <div class="navbar-wrapper">
+            <div class="navbar-brand header-logo">
+                <a href="{% url 'index' %}" class="b-brand">
+                    <div style="border-radius: 10px; width: 35px; height: 35px; display: -webkit-inline-box; display: -ms-inline-flexbox; display: inline-flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center;">
+                        <img src="{% static 'assets/images/logo_girls.svg' %}" alt="logo_bu">
+                    </div>
+                    <span class="b-title">Digital Girls</span>
+                </a>
+            </div>
+            <div class="navbar-content scroll-div ">
+                <ul class="nav pcoded-inner-navbar">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Navigation</label>
+                    </li>
+                    {% if request.resolver_match.view_name == 'index' %}
+                    <li class="nav-item active">
+                        <a href="{% url 'index' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item ">
+                        <a href="{% url 'index' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+                    {% endif %}
+                    {% if request.resolver_match.view_name == 'course' or request.resolver_match.view_name == 'questionList' or request.resolver_match.view_name == 'questionAdd' %}
+                    <li class="nav-item active">
+                        <a href="{% url 'course' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-server  "></i></span><span class="pcoded-mtext">Courses</span></a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item ">
+                        <a href="{% url 'course' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Courses</span></a>
+                    </li>
+                    {% endif %}
+
+                    {% if request.resolver_match.view_name == 'userAnswerCoursePage' or request.resolver_match.view_name == 'userAnswerListPage' or request.resolver_match.view_name == 'userAnswerQuestionViewPage' %}
+                        <li class="nav-item active">
+                            <a href="{% url 'userAnswerCoursePage' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">User answer</span></a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'userAnswerCoursePage' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">User answer</span></a>
+                        </li>
+                    {% endif %}
+
+                    {% if request.resolver_match.view_name == 'candidateList' %}
+                        <li class="nav-item active">
+                            <a href="{% url 'candidateList' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Candidates</span></a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'candidateList' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Candidates</span></a>
+                        </li>
+                    {% endif %}
+                    {% if request.resolver_match.view_name == 'studied' %}
+                        <li class="nav-item active">
+                            <a href="{% url 'studied' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Studied Students</span></a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'studied' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Studied Students</span></a>
+                        </li>
+                    {% endif %}
+                    {% if request.resolver_match.view_name == 'registered' %}
+                        <li class="nav-item active">
+                            <a href="{% url 'registered' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Royhatdan o'tganlar</span></a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'registered' %}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Royhatdan o'tganlar</span></a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light">
+        <div class="m-header">
+            <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
+            <a href="{% url 'index' %}" class="b-brand">
+                   <div style="border-radius: 10px; width: 35px; height: 35px; display: -webkit-inline-box; display: -ms-inline-flexbox; display: inline-flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center;">
+                       <img src="{% static 'assets/images/logo_girls.svg' %}" alt="logo_bu">
+                   </div>
+                   <span class="b-title">Digital Girls</span>
+               </a>
+        </div>
+        <a class="mobile-menu" id="mobile-header" href="#!">
+            <i class="feather icon-more-horizontal"></i>
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li><a href="#" class="full-screen" onclick="toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
+                <li class="nav-item">
+                    <div class="main-search">
+                        <form action="{% url 'search' %}">
+                            <div class="input-group">
+                                <input type="text" id="m-search" name="search" class="form-control" placeholder="Search . . .">
+                                <span class="input-group-append search-btn btn btn-primary">
+                                    <i class="feather icon-search input-group-text"></i>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+{% block content %}
+{% endblock %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+{#    <script src="{% static 'assets/js/pages/dashboard-project.js' %}"></script>#}
+    <script src="{% static 'assets/js/vendor-all.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/pcoded.min.js' %}"></script>
+
+    <script src="{% static 'assets/plugins/amchart/js/amcharts.js' %}"></script>
+    <script src="{% static 'assets/plugins/amchart/js/gauge.js' %}"></script>
+    <script src="{% static 'assets/plugins/amchart/js/serial.js' %}"></script>
+    <script src="{% static 'assets/plugins/amchart/js/light.js' %}"></script>
+    <script src="{% static 'assets/plugins/amchart/js/pie.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/amchart/js/ammap.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/amchart/js/usaLow.js' %}"></script>
+    <script src="{% static 'assets/plugins/amchart/js/radar.js' %}"></script>
+    <script src="{% static 'assets/plugins/amchart/js/worldLow.js' %}"></script>
+
+    <script src="{% static 'assets/js/pages/dashboard-ecommerce.js' %}"></script>
+    <script src="{% static 'assets/js/pages/dashboard-project.js' %}"></script>
+    <script>
+        document.onkeydown = function(e) {
+            if (e.ctrlKey &&
+                (e.keyCode === 67 ||
+                 e.keyCode === 86 ||
+                 e.keyCode === 85 ||
+                 e.keyCode === 117)) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+
+        $(document).keypress("u",function(e) {
+            if(e.ctrlKey) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        });
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) { // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I
+                return false;
+            }
+        });
+    </script>
+    <script>
+        $('#theprogressbar').attr('aria-valuenow', {{ exam_passed_percentage }}).css('width', {{ exam_passed_percentage }});
+        $('#theprogressbar2').attr('aria-valuenow', {{ excellent_candidate_percentage }}).css('width', {{ excellent_candidate_percentage }});
+        $('#theprogressbar3').attr('aria-valuenow', {{ checked_telegram_bot_percentage }}).css('width', {{ checked_telegram_bot_percentage }});
+    </script>
+{% block script %}
+{% endblock %}
+</body>
+</html>

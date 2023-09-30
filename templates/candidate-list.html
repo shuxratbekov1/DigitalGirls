@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/plugins/data-tables/css/datatables.min.css' %}">
+{% endblock %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="page-header-title">
+                                        <h5 class="m-b-10">Candidate Dashboard</h5>
+                                    </div>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="feather icon-home"></i></a></li>
+                                        <li class="breadcrumb-item"><a href="#!">Candidate List Digital Girls</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+                                <div class="col-xl-12 col-md-6">
+                                    <div class="card code-table">
+                                        <div class="card-header">
+                                            <h5>Candidate List</h5>
+                                        </div>
+                                        <div class="card-block pb-0">
+                                            <div class="table-responsive">
+                                                <table id="key-act-button" class="display table nowrap table-striped table-hover" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Phone Number</th>
+                                                            <th>Course</th>
+                                                            <th>Created Date</th>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for c in candidate_list %}
+                                                        <tr>
+                                                            <td>
+                                                                <h6 class="mb-1">{{ c.name }}</h6>
+                                                            </td>
+                                                            <td>
+                                                                <h6 class="mb-1">{{ c.phone_number }}</h6>
+                                                            </td>
+                                                            <td>
+                                                                <h6 class="m-b-0">{{ c.course }}</h6>
+                                                            </td>
+                                                            <td>
+                                                                <h6 class="m-b-0">{{ c.created_at|date:'Y-m-d H:i:s' }}</h6>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock %}
+{% block script %}
+<script src="{% static 'assets/plugins/data-tables/js/datatables.min.js' %}"></script>
+<script src="{% static 'assets/js/pages/tbl-datatable-custom.js' %}"></script>
+{% endblock %}

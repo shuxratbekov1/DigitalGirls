@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <style>
+        .col-9 p {
+            color: black;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="page-header-title">
+                                        <h5 class="m-b-10">User detail</h5>
+                                    </div>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="feather icon-home"></i></a></li>
+                                        <li class="breadcrumb-item"><a href="#">User</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+                                <div class="col-6">
+                                    <img width="100%" src="{{ registered.passport.url }}" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>name:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.name }}</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>l_name:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.l_name }}</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>phone:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.phone }}</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>birth:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.birth|date:'Y-m-d' }}</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>Kompyuter bilish darajasi:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.get_degree_display }}</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>address:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.address }}</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>information:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.information }}</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>course:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.course.name }}</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>Sabab:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.reason }}</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>Qayerdan eshitdi:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.hear_from }}</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p>created_at:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><b>{{ registered.created_at|date:'Y-m-d H:i:s' }}</b></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- [ breadcrumb ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
